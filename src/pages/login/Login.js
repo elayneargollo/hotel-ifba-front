@@ -39,8 +39,8 @@ export default class Login extends Component {
   render() {
 
     return (
-      <div className="conteudo">
-        <div className="box">
+      <div className="conteudoLogin">
+        <div className="boxLogin">
           <h1>Login</h1>
           <form>
 

@@ -3,8 +3,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
-import { createStyles, makeStyles } from '@material-ui/core/styles';
-import AddIcCallIcon from '@material-ui/icons/AddIcCall';
+import { createStyles, makeStyles } from '@material-ui/core/styles'
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -17,7 +16,7 @@ const useStyles = makeStyles((theme) =>
   }),
 );
 
-export default function NavBar() {
+export default function Footer() {
   const classes = useStyles();
   return (
     <div className={classes.root}>
@@ -25,13 +24,12 @@ export default function NavBar() {
         <Container maxWidth="md">
           <Toolbar>
             <Typography variant="h8" className={classes.title}>
-              hotelifba@gmail.com
+             @ Julho 2021
             </Typography>
             <Typography variant="h8" className={classes.title}>
-              <AddIcCallIcon fontSize="small" /> +55 (71) 3321 5688
+              Trabalho de programação web - IFBA
             </Typography>
             <Typography variant="h8" className={classes.title}>
-              Português
             </Typography>
           </Toolbar>
         </Container>

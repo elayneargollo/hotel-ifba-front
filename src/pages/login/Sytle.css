@@ -1,11 +1,26 @@
 .conteudo {
     width: 100vw;
     height: 100vh;
-    background: #dfdfdf;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
+}
+
+.conteudoHome {
+    width: 100vw;
+    height: 50vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.conteudoSlogan {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 
 .conteudoLogin {
@@ -17,13 +32,21 @@
   align-items: center;
 }
 
+.boxHome {
+  width: 400px;
+  height: 350px;
+  border: 1px;
+  border-radius: 20px;
+  text-align: center;
+  padding: 30px;
+}
+
 
 .box {
   width: 400px;
   height: 350px;
   border: 1px;
   border-radius: 20px;
-  background: #ecf0f3cb; 
   text-align: center;
   padding: 30px;
 }
@@ -33,14 +56,13 @@
   height: 500px;
   border: 1px;
   border-radius: 20px;
-  background: #ecf0f3cb; 
   text-align: center;
   padding: 30px;
 }
 
 .button {
-  width: 480px;
-  height: 550px;
+  width: 790px;
+  height: 790px;
   border: 1px;
   border-radius: 20px;
   text-align: center;
@@ -63,7 +85,7 @@
 .senhas {
   padding: 1px;
   height: 20px;
-  width: 420px;
+  width: 720px;
 }
 
 h1{
