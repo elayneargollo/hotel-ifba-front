@@ -22,10 +22,6 @@ const images = [
     thumbnail: 'https://media-cdn.tripadvisor.com/media/photo-s/06/e1/01/c8/rio-quente-cristal-resort.jpg',
   }, 
   {
-    original: 'https://media-cdn.tripadvisor.com/media/photo-s/16/a9/24/69/um-lindo-dia-acorda-com.jpg',
-    thumbnail: 'https://media-cdn.tripadvisor.com/media/photo-s/16/a9/24/69/um-lindo-dia-acorda-com.jpg',
-  }, 
-  {
     original: 'https://media-cdn.tripadvisor.com/media/photo-s/0a/de/21/eb/rio-quente-cristal-resort.jpg',
     thumbnail: 'https://media-cdn.tripadvisor.com/media/photo-s/0a/de/21/eb/rio-quente-cristal-resort.jpg',
   }, 
@@ -43,11 +39,11 @@ export default function Home() {
     <React.Fragment>
     <CssBaseline />
       <Container fixed>
-          <h1>Hotel IFBA. </h1>
+          <h1>Hotel IFBA</h1>
           <h4>Sofisticação e exclusividade definem o Hotel IFBA</h4>
           <p>Um dos hotéis mais encantadores do resort, foi inteiramente projetado no conceito de paisagismo sustentável pelo renomado escritório de Benedito Abbud. Cada mínimo detalhe pensado para que você viva experiências inesquecíveis.</p>
           
-          <h1>Acomodações . </h1>
+          <h1>Acomodações</h1>
           <h4>No Hotel IFBA, você encontra 284 apartamentos bem iluminados e com varandas amplas. Eles se dividem entre Suíte Cristal, Suíte Master e Suíte. </h4>
           <p>A Suíte Cristal tem capacidade para acomodar, com muito conforto, até 10 pessoas; a Suíte Master acomoda, confortavelmente, até 5 pessoas; a Suíte, além de hospedar até quatro pessoas, possui quarto adaptado para pessoas com necessidades especiais.</p>
           

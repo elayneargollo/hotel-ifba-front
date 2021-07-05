@@ -13,21 +13,14 @@ import { getAllCliente } from "../../services/api/clientes";
 import { addReserva } from "../../services/api/reservas";
 import { ReservaFieldsValidation } from "./reservaFieldsValidation.js";
 import swal from 'sweetalert';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import Container from '@material-ui/core/Container';
 
 const useStyles = makeStyles((theme) => ({
-    button: {
-        display: 'block',
-        marginTop: theme.spacing(4),
-        width: 1000,
-    },
     textField: {
         marginLeft: theme.spacing(1),
         marginRight: theme.spacing(1),
         width: 200,
-    },
-    root: {
-        display: 'flex',
-        flexWrap: 'wrap',
     },
 }));
 
@@ -146,106 +139,117 @@ export default function ControlledOpenSelect() {
     };
 
     return (
-        <div className="conteudoLogin">
-            <div className="boxLogin">
-                <h1>Registre uma Reserva</h1>
-                <div className={classes.root}>
+        <React.Fragment>
+            <CssBaseline />
+            <Container fixed>
 
-                    <div>
-                        <TextField
-                            id="date"
-                            label="Quantidade de Pessoas *"
-                            type="int"
-                            defaultValue="2"
-                            className={classes.textField}
-                            value={quantidade_pessoas}
-                            onChange={handleChangeQuarto}
-                        />
+                <div className="texto">
+                    <h1>Registre uma Reserva</h1>
+                </div>
+                <div className="texto">
+                    <TextField
+                        id="date"
+                        label="Quantidade de Pessoas *"
+                        type="int"
+                        defaultValue="2"
+                        className={classes.textField}
+                        value={quantidade_pessoas}
+                        onChange={handleChangeQuarto}
+                    />
+                </div>
 
-                        <TextField
-                            id="date"
-                            label="Número do Cartão *"
-                            type="int"
-                            defaultValue="5381579886310193"
-                            className={classes.textField}
-                            value={cartao}
-                            onChange={(e) => setCartao(e.target.value)}
-                        />
+                <div className="texto">
 
-                        <TextField disabled
-                            id="date"
-                            label="Número do Quarto *"
-                            type="int"
-                            defaultValue="0"
-                            className={classes.textField}
-                            value={quartoNumber}
-                        />
-
-                        <FormControl className={classes.textField}>
-                            <InputLabel id="demo-controlled-open-select-label">Serviços *</InputLabel>
-                            <Select
-                                labelId="demo-controlled-open-select-label"
-                                id="demo-controlled-open-select"
-                                open={open}
-                                onClose={handleClose}
-                                onOpen={handleOpen}
-                                value={servicoId}
-                                onChange={handleChange}
-                            >
-                                {servicos.map(servico => (
+                    <TextField
+                        id="date"
+                        label="Número do Cartão *"
+                        type="int"
+                        defaultValue="5381579886310193"
+                        className={classes.textField}
+                        value={cartao}
+                        onChange={(e) => setCartao(e.target.value)}
+                    />
+                </div>
+                <div className="texto">
+                    <TextField disabled
+                        id="date"
+                        label="Número do Quarto *"
+                        type="int"
+                        defaultValue="0"
+                        className={classes.textField}
+                        value={quartoNumber}
+                    />
+                </div>
+                <div className="texto">
+                    <FormControl className={classes.textField}>
+                        <InputLabel id="demo-controlled-open-select-label">Serviços *</InputLabel>
+                        <Select
+                            labelId="demo-controlled-open-select-label"
+                            id="demo-controlled-open-select"
+                            open={open}
+                            onClose={handleClose}
+                            onOpen={handleOpen}
+                            value={servicoId}
+                            onChange={handleChange}
+                        >
+                            {servicos.map(servico => (
                                     <MenuItem value={servico.id}>{servico.tipo}</MenuItem>
                                 ))};
-                            </Select>
-                        </FormControl>
-
-                        <FormControl className={classes.textField}>
-                            <InputLabel id="demo-controlled-open-select-label">Cliente *</InputLabel>
-                            <Select
-                                labelId="demo-controlled-open-select-label"
-                                id="demo-controlled-open-select"
-                                open={openCliente}
-                                onClose={handleCloseCliente}
-                                onOpen={handleOpenCliente}
-                                value={cliente}
-                                onChange={handleChangeCliente}
-                            >
-                                {clientes.map(cliente => (
+                        </Select>
+                    </FormControl>
+                </div>
+                <div className="texto">
+                    <FormControl className={classes.textField}>
+                        <InputLabel id="demo-controlled-open-select-label">Cliente *</InputLabel>
+                        <Select
+                            labelId="demo-controlled-open-select-label"
+                            id="demo-controlled-open-select"
+                            open={openCliente}
+                            onClose={handleCloseCliente}
+                            onOpen={handleOpenCliente}
+                            value={cliente}
+                            onChange={handleChangeCliente}
+                        >
+                            {clientes.map(cliente => (
                                     <MenuItem value={cliente.id}>{cliente.nome}</MenuItem>
                                 ))};
-                            </Select>
-                        </FormControl>
-
-                        <TextField
-                            id="date"
-                            label="Data de Entrada *"
-                            type="datetime-local"
-                            defaultValue="2017-05-24T10:30"
-                            className={classes.textField}
-                            value={data_entrada}
-                            onChange={(e) => setData_entrada(e.target.value)}
-                            InputLabelProps={{
-                                shrink: true,
-                            }}
-                        />
-
-                        <TextField
-                            id="date"
-                            label="Data de Saída *"
-                            type="datetime-local"
-                            defaultValue="2017-05-24T10:30"
-                            className={classes.textField}
-                            value={data_saida}
-                            onChange={(e) => setData_saida(e.target.value)}
-                            InputLabelProps={{
-                                shrink: true,
-                            }}
-                        />
-                    </div>
+                        </Select>
+                    </FormControl>
                 </div>
-                <div className={classes.button}>
+
+                <div className="texto">
+                    <TextField
+                        id="date"
+                        label="Data de Entrada *"
+                        type="datetime-local"
+                        defaultValue="2017-05-24T10:30"
+                        className={classes.textField}
+                        value={data_entrada}
+                        onChange={(e) => setData_entrada(e.target.value)}
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
+                    />
+                </div>
+
+                <div className="texto">
+                    <TextField
+                        id="date"
+                        label="Data de Saída *"
+                        type="datetime-local"
+                        defaultValue="2017-05-24T10:30"
+                        className={classes.textField}
+                        value={data_saida}
+                        onChange={(e) => setData_saida(e.target.value)}
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
+                    />
+                </div>
+                <div className="texto">
                     <Button size="small" variant="contained" color="primary" onClick={() => handleSave()}>Registrar</Button>
                 </div>
-            </div>
-        </div>
+            </Container>
+        </React.Fragment>
     );
 }

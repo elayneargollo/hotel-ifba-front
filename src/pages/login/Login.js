@@ -5,6 +5,7 @@ import Link from '@material-ui/core/Link';
 import '../login/Sytle.css';
 import { login } from "../../services/api/users";
 import swal from 'sweetalert';
+import { registrarCliente } from '../../routes/paths';
 
 export default class Login extends Component {
 
@@ -42,35 +43,37 @@ export default class Login extends Component {
       <div className="conteudoLogin">
         <div className="boxLogin">
           <h1>Login</h1>
-          <form>
-
+      
             <div>
-              <TextField required id="standard-required" label="Enter your username" defaultValue="Hello World" variant="outlined" size="small"
-                value={this.state.username}
-                onChange={(e) => this.setState({ username: e.target.value })}
+              <TextField 
+              required 
+              id="standard-required" 
+              label="Enter your username" 
+              defaultValue="Hello World" 
+              size="small"
+              value={this.state.username}
+              onChange={(e) => this.setState({ username: e.target.value })}
               />
             </div>
 
             <div className="texto">
-              <TextField required id="standard-required" label="Enter your password" defaultValue="Hello World" variant="outlined" size="small"
-                value={this.state.password}
-                type="password"
-                autoComplete="current-password"
-                onChange={(e) => this.setState({ password: e.target.value })}
+              <TextField 
+              required 
+              id="standard-required" 
+              label="Enter your password" 
+              defaultValue="Hello World" 
+              size="small"
+              value={this.state.password}
+              type="password"
+              autoComplete="current-password"
+              onChange={(e) => this.setState({ password: e.target.value })}
               />
             </div>
-
-          </form>
-
+      
+ 
           <div className="senhas">
-            <Link href="#" >
+            <Link href={registrarCliente} >
               Cadastrar uma conta
-            </Link>
-          </div>
-
-          <div className="senhas">
-            <Link href="#" >
-              Esqueci minha senha
             </Link>
           </div>
    
