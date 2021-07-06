@@ -21,6 +21,9 @@ const useStyles = makeStyles((theme) => ({
         marginRight: theme.spacing(1),
         width: 200,
     },
+    table: {
+        minWidth: 700,
+      },
 }));
 
 export default function ControlledOpenSelect() {
@@ -117,10 +120,10 @@ export default function ControlledOpenSelect() {
     };
 
     return (
+        <div className='conteudoReserva'>
         <React.Fragment>
             <CssBaseline />
-            <Container fixed>
-
+            <Container>
                 <div className="texto">
                     <h1>Registre uma Reserva</h1>
                 </div>
@@ -170,7 +173,7 @@ export default function ControlledOpenSelect() {
                             value={servicoId}
                             onChange={handleChange}
                         >
-                            {servicos.map(servico => (
+                            {servicos.length > 0 && servicos.map(servico => (
                                     <MenuItem value={servico.id}>{servico.tipo}</MenuItem>
                                 ))};
                         </Select>
@@ -210,5 +213,6 @@ export default function ControlledOpenSelect() {
                 </div>
             </Container>
         </React.Fragment>
+        </div>
     );
 }
