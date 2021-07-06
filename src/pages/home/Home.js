@@ -48,11 +48,11 @@ export default function Home() {
           <p>A Suíte Cristal tem capacidade para acomodar, com muito conforto, até 10 pessoas; a Suíte Master acomoda, confortavelmente, até 5 pessoas; a Suíte, além de hospedar até quatro pessoas, possui quarto adaptado para pessoas com necessidades especiais.</p>
           
           <Button size="small" variant="contained" color="primary" onClick={redirectLogin}>
-            <EventIcon />
-            Faça agora sua reserva
+              <EventIcon />
+                 Faça agora sua reserva
           </Button>
 
-          <div className="conteudoSlogan">
+          <div className="conteudoHome">
             <ImageGallery items={images} />
           </div>
       </Container>

@@ -8,7 +8,7 @@
 }
 
 .conteudoHome {
-    width: 100vw;
+    width: 20vw;
     height: 50vh;
     display: flex;
     flex-direction: row;
@@ -97,7 +97,6 @@
 h1{
   color: #556cd6;
 }
-
   
 .espacamento{
   margin: 50px; 
