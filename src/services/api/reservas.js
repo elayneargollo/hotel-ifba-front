@@ -11,3 +11,15 @@ export const addReserva = reserva =>
         return null;
     });
 }
+
+export const getById = id =>
+{
+    return axios
+    .get(`/reservas/${id}`)
+    .then(response => {
+        return response;
+    })
+    .catch(error => {
+        return null;
+    });
+}

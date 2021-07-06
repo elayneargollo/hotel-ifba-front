@@ -9,7 +9,7 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { getAllServico } from "../../services/api/servicos";
 import { getQuartosDisponiveis } from "../../services/api/quartos";
-import { addReserva } from "../../services/api/reservas";
+import { addReserva, getById } from "../../services/api/reservas";
 import { ReservaFieldsValidation } from "./reservaFieldsValidation.js";
 import swal from 'sweetalert';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -27,6 +27,8 @@ export default function ControlledOpenSelect() {
     const classes = useStyles();
     const [servicoId, setServico] = React.useState('');
     const [servicos, setServicoCombo] = useState('');
+    const [reserva, setReserva] = useState('');
+    const [reservaId, setReservaId] = useState('');
     const [open, setOpen] = React.useState(false);
     const [data_entrada, setData_entrada] = useState('');
     const [data_saida, setData_saida] = useState('');
@@ -35,7 +37,6 @@ export default function ControlledOpenSelect() {
     const [quartoNumber, setNumeroQuarto] = React.useState('');
     const [quartoId, setQuarto] = React.useState('');
     const [cartao, setCartao] = useState('');
-
     const id = localStorage.getItem('id');
 
     function validationField(data_entrada, data_saida, quantidade_pessoas, cliente, servico, quarto) {
@@ -93,6 +94,19 @@ export default function ControlledOpenSelect() {
         getQuartos();
     };
 
+    const handleSearchReserva = () => {
+
+        async function getReserva() {
+            try {
+                const data = await getById(reservaId);
+                setReserva(data.data);
+                console.log(reserva.cartao)
+            } catch (error) {
+            }
+        }
+        getReserva();
+    };
+
     useEffect(() => {
         async function getServicos() {
             try {
@@ -122,68 +136,59 @@ export default function ControlledOpenSelect() {
             <Container fixed>
 
                 <div className="texto">
-                    <h1>Registre uma Reserva</h1>
+                    <h1>Atualizar Reserva</h1>
                 </div>
+
                 <div className="texto">
                     <TextField
                         id="date"
-                        label="Quantidade de Pessoas *"
+                        label="Número da reserva *"
                         type="int"
-                        defaultValue="2"
+                        defaultValue="13"
                         className={classes.textField}
-                        value={quantidade_pessoas}
-                        onChange={handleChangeQuarto}
+                        value={reservaId}
+                        onChange={(e) => setReservaId(e.target.value)}
                     />
+
+                </div>
+                <div className="texto">
+                    <Button size="small" variant="contained" color="primary" onClick={() => handleSearchReserva()}>Procurar Reserva</Button>
                 </div>
 
                 <div className="texto">
-
                     <TextField
-                        id="date"
-                        label="Número do Cartão *"
-                        type="int"
-                        defaultValue="5381579886310193"
+                        id="margin-none"
                         className={classes.textField}
-                        value={cartao}
+                        value={reserva.cartao}
                         onChange={(e) => setCartao(e.target.value)}
                     />
                 </div>
                 <div className="texto">
                     <TextField disabled
                         id="date"
-                        label="Número do Quarto *"
                         type="int"
                         defaultValue="0"
                         className={classes.textField}
-                        value={quartoNumber}
+                        value={reserva.quarto}
                     />
                 </div>
                 <div className="texto">
-                    <FormControl className={classes.textField}>
-                        <InputLabel id="demo-controlled-open-select-label">Serviços *</InputLabel>
-                        <Select
-                            labelId="demo-controlled-open-select-label"
-                            id="demo-controlled-open-select"
-                            open={open}
-                            onClose={handleClose}
-                            onOpen={handleOpen}
-                            value={servicoId}
-                            onChange={handleChange}
-                        >
-                            {servicos.map(servico => (
-                                    <MenuItem value={servico.id}>{servico.tipo}</MenuItem>
-                                ))};
-                        </Select>
-                    </FormControl>
+                    <div className="texto">
+                        <TextField disabled
+                            id="date"
+                            type="int"
+                            defaultValue="0"
+                            className={classes.textField}
+                            value={reserva.servico}
+                        />
+                    </div>
                 </div>
                 <div className="texto">
                     <TextField
                         id="date"
-                        label="Data de Entrada *"
                         type="datetime-local"
-                        defaultValue="2017-05-24T10:30"
                         className={classes.textField}
-                        value={data_entrada}
+                        value={reserva.data_entrada}
                         onChange={(e) => setData_entrada(e.target.value)}
                         InputLabelProps={{
                             shrink: true,
@@ -194,11 +199,9 @@ export default function ControlledOpenSelect() {
                 <div className="texto">
                     <TextField
                         id="date"
-                        label="Data de Saída *"
                         type="datetime-local"
-                        defaultValue="2017-05-24T10:30"
                         className={classes.textField}
-                        value={data_saida}
+                        value={reserva.data_entrada}
                         onChange={(e) => setData_saida(e.target.value)}
                         InputLabelProps={{
                             shrink: true,

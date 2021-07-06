@@ -6,7 +6,7 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import { createStyles, makeStyles } from '@material-ui/core/styles';
 import { useHistory } from 'react-router-dom';
-import { login, servicos, registrarCliente, registrarReserva, editarCliente, caracteristicas } from '../../routes/paths';
+import { login, servicos, registrarCliente, registrarReserva, editarCliente, caracteristicas, editReserva } from '../../routes/paths';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import Fade from '@material-ui/core/Fade';
@@ -36,6 +36,7 @@ export default function ButtonAppBar() {
   const classes = useStyles();
   const history = useHistory();
   const [anchorEl, setAnchorEl] = React.useState(null);
+  
   const open = Boolean(anchorEl);
 
   const redirectLogin = () => {
@@ -73,6 +74,11 @@ export default function ButtonAppBar() {
     history.push(registrarReserva);
   }
 
+  const redirectEditReservation = () => {
+    setAnchorEl(null);
+    history.push(editReserva);
+  }
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -101,27 +107,27 @@ export default function ButtonAppBar() {
           >
             <MenuItem
               onClick={redirectService}>
-            Services and Prices</MenuItem>
+            Serviços e Preços</MenuItem>
             <MenuItem
               onClick={redirectReservation}>
-            Reservations</MenuItem>
+            Realizar Reserva</MenuItem>
+            <MenuItem
+              onClick={redirectEditReservation}>
+            Alterar Reserva</MenuItem>
             <MenuItem
               onClick={redirectLogin}>
             Login</MenuItem>
             <MenuItem
-              onClick={redirectRegister}>
-            Register User</MenuItem>
+            onClick={redirectRegister}>
+            Registrar-se</MenuItem>
             <MenuItem
               onClick={redirectHome}>
-              <Home />
-              Home</MenuItem>
+            Home</MenuItem>
             <MenuItem
               onClick={redirectEdit}>
-              <Home />
               Alterar Dados Cadastrais</MenuItem>
             <MenuItem
               onClick={redirectCaracteristicasGerais}>
-              <Home />
              Características Gerais</MenuItem>
           </Menu>
           <Button 

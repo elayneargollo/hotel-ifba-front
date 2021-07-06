@@ -62,7 +62,7 @@ export default function LayoutTextFields() {
 
         async function getResponse() {
 
-            const data = await edit(cliente);
+            const data = await edit(clientePut);
             setLoading(false);
 
             if (data != null) {
