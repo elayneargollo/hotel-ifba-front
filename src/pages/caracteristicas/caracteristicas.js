@@ -17,7 +17,6 @@ export default function User() {
   const [caracteristicas, setCaracteristicas] = useState({});
   const [loading, setLoading] = useState(true);
 
-
   useEffect(() => {
     async function getItems() {
 
