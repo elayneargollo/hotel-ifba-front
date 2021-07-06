@@ -14,10 +14,6 @@ export default function Login() {
   const history = useHistory();
   const { authenticated, handleLogin} = useContext(Context);
 
-  if(authenticated){
-     history.push(registrarCliente);
-  }
-
    return (
       <div className="conteudoLogin">
         <div className="boxLogin">

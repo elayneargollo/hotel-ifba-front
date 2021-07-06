@@ -1,13 +1,14 @@
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import Menu from '../components/navbar/menu';
 import Navbar from '../components/navbar/navbar';
-import Footer from '../components/navbar/footer';
 import Home from '../pages/home/Home';
 import Login from '../pages/login/Login';
 import Servicos from '../pages/servicos/Servicos';
 import RegisterCliente from '../pages/clientes/registerCliente';
 import RegisterReserva from '../pages/reservas/registerReserva';
-import React, { Component, useContext, useState} from "react";
+import EditeCliente from '../pages/clientes/editeCliente';
+import Caracteristicas from '../pages/caracteristicas/caracteristicas';
+import React, { useContext} from "react";
 import { Context } from '../contexts/auth'
 import swal from 'sweetalert';
 
@@ -20,7 +21,6 @@ function CustomRoute({ isPrivate, ... rest }){
       swal("", "Realize o login para continuar ... ", "");
       return <Redirect to="/login" />
     }
-
     return <Route {...rest} />;
 }
 
@@ -36,8 +36,9 @@ function Rotas() {
         <CustomRoute exact path={paths.servicos} component={Servicos} />
         <CustomRoute exact path={paths.registrarCliente} component={RegisterCliente} />
         <CustomRoute isPrivate exact path={paths.registrarReserva} component={RegisterReserva} />
+        <CustomRoute isPrivate exact path={paths.editarCliente} component={EditeCliente} />
+        <CustomRoute isPrivate exact path={paths.caracteristicas} component={Caracteristicas} />
       </Switch>
-      <Footer />
     </BrowserRouter>
   );
 }

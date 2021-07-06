@@ -22,9 +22,10 @@ function AuthProvider({ children }){
     async function handleLogin(username, password)
     {
         let credentials = { username, password };
-        const { data: { token } }  = await login(credentials)
-  
+        const { data: { token,  user_id} }  = await login(credentials)
+
         localStorage.setItem('token', JSON.stringify(token))
+        localStorage.setItem('id', user_id)
         axios.defaults.headers.Authorization = `Token ${token}`;
 
         setAuthenticated(true);

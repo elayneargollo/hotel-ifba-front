@@ -6,13 +6,14 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import { createStyles, makeStyles } from '@material-ui/core/styles';
 import { useHistory } from 'react-router-dom';
-import { login, servicos, registrarCliente, registrarReserva } from '../../routes/paths';
+import { login, servicos, registrarCliente, registrarReserva, editarCliente, caracteristicas } from '../../routes/paths';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import Fade from '@material-ui/core/Fade';
 import AppsIcon from '@material-ui/icons/Apps';
 import Home from '@material-ui/icons/Home';
 import ExitToApp from '@material-ui/icons/ExitToApp';
+import {  Redirect } from 'react-router-dom';
 
 
 const useStyles = makeStyles((theme) =>
@@ -55,6 +56,16 @@ export default function ButtonAppBar() {
   const redirectRegister = () => {
     setAnchorEl(null);
     history.push(registrarCliente);
+  }
+
+  const redirectEdit = () => {
+    setAnchorEl(null);
+    history.push(editarCliente);
+  }
+
+  const redirectCaracteristicasGerais = () => {
+    setAnchorEl(null);
+    history.push(caracteristicas);
   }
 
   const redirectReservation = () => {
@@ -104,6 +115,14 @@ export default function ButtonAppBar() {
               onClick={redirectHome}>
               <Home />
               Home</MenuItem>
+            <MenuItem
+              onClick={redirectEdit}>
+              <Home />
+              Alterar Dados Cadastrais</MenuItem>
+            <MenuItem
+              onClick={redirectCaracteristicasGerais}>
+              <Home />
+             Características Gerais</MenuItem>
           </Menu>
           <Button 
           color="inherit" 
