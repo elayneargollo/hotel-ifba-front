@@ -10,6 +10,8 @@ import Paper from '@material-ui/core/Paper';
 import swal from 'sweetalert';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { getCaracteristicas } from "../../services/api/caracteristicas";
+import Container from '@material-ui/core/Container';
+import CssBaseline from '@material-ui/core/CssBaseline';
 
 export default function User() {
 
@@ -41,7 +43,9 @@ export default function User() {
   } else {
 
     return (
-      <div className='espacamento'>
+      <React.Fragment>
+      <CssBaseline />
+        <Container fixed>
         <h1>Características Gerais</h1>
         <TableContainer component={Paper}>
           <Table className={classes.table} aria-label="customized table">
@@ -69,7 +73,8 @@ export default function User() {
             </TableBody>
           </Table>
         </TableContainer>
-      </div>
+      </Container>
+      </React.Fragment>
     );
   }
 }
