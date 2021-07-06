@@ -22,24 +22,20 @@ function AuthProvider({ children }) {
 
     async function handleLogin(username, password) {
 
-        async function login() {
+        try {
+            let credentials = { username, password };
+            const { data: { token, user_id } } = await login(credentials)
+            localStorage.setItem('token', JSON.stringify(token))
+            localStorage.setItem('id', user_id)
+            axios.defaults.headers.Authorization = `Token ${token}`;
 
-            try {
+            setAuthenticated(true);
 
-                let credentials = { username, password };
-                const { data: { token, user_id } } = await login(credentials)
-                localStorage.setItem('token', JSON.stringify(token))
-                localStorage.setItem('id', user_id)
-                axios.defaults.headers.Authorization = `Token ${token}`;
-
-                setAuthenticated(true);
-
-            } catch (error) {
-                swal("Ocorreu um erro durante a autorização");
-                return;
-            }
+        } catch (error) {
+            swal("Ocorreu um erro durante a autorização");
+            return;
         }
-        login();
+
     }
 
     return (
