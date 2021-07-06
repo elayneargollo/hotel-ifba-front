@@ -56,7 +56,7 @@ export default function Login() {
             </Link>
           </div>
 
-          <div >
+          <div className="button">
             <Button size="small" variant="contained" color="primary" onClick={() => handleLogin(username, password, history)}>Entrar</Button>
           </div>
 
