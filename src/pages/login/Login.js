@@ -7,6 +7,7 @@ import '../login/Sytle.css';
 import { registrarCliente, editarCliente } from '../../routes/paths';
 import { useHistory } from 'react-router-dom';
 
+
 export default function Login() {
 
   const [username, setUsername] = useState('');
@@ -32,7 +33,7 @@ export default function Login() {
               size="small"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-            />
+            />       
           </div>
 
           <div className="texto">

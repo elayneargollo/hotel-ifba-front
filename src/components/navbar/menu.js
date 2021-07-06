@@ -12,7 +12,14 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Fade from '@material-ui/core/Fade';
 import AppsIcon from '@material-ui/icons/Apps';
 import ExitToApp from '@material-ui/icons/ExitToApp';
-
+import HomeIcon from '@material-ui/icons/Home';
+import PersonIcon from '@material-ui/icons/Person';
+import PermContactCalendarIcon from '@material-ui/icons/PermContactCalendar';
+import EditIcon from '@material-ui/icons/Edit';
+import PersonAddIcon from '@material-ui/icons/PersonAdd';
+import RoomServiceIcon from '@material-ui/icons/RoomService';
+import InfoIcon from '@material-ui/icons/Info';
+import ReceiptIcon from '@material-ui/icons/Receipt';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -25,7 +32,7 @@ const useStyles = makeStyles((theme) =>
     title: {
       flexGrow: 1,
     },
-    
+
   }),
 );
 
@@ -34,7 +41,7 @@ export default function ButtonAppBar() {
   const classes = useStyles();
   const history = useHistory();
   const [anchorEl, setAnchorEl] = React.useState(null);
-  
+
   const open = Boolean(anchorEl);
 
   const redirectLogin = () => {
@@ -105,33 +112,41 @@ export default function ButtonAppBar() {
           >
             <MenuItem
               onClick={redirectService}>
-            Serviços e Preços</MenuItem>
+              <RoomServiceIcon color="primary" />
+              Serviços e Preços</MenuItem>
             <MenuItem
               onClick={redirectReservation}>
-            Realizar Reserva</MenuItem>
+              <PermContactCalendarIcon color="primary" />
+              Realizar Reserva</MenuItem>
             <MenuItem
               onClick={redirectEditReservation}>
-            Alterar Reserva</MenuItem>
+              <ReceiptIcon color="primary" />
+              Alterar Reserva</MenuItem>
             <MenuItem
               onClick={redirectLogin}>
-            Login</MenuItem>
+              <PersonIcon color="primary" />
+              Login</MenuItem>
             <MenuItem
-            onClick={redirectRegister}>
-            Registrar-se</MenuItem>
+              onClick={redirectRegister}>
+              <PersonAddIcon color="primary" />
+              Registrar-se</MenuItem>
             <MenuItem
               onClick={redirectHome}>
-            Home</MenuItem>
+              <HomeIcon color="primary" />
+              Home</MenuItem>
             <MenuItem
               onClick={redirectEdit}>
+              <EditIcon color="primary" />
               Alterar Dados Cadastrais</MenuItem>
             <MenuItem
               onClick={redirectCaracteristicasGerais}>
-             Características Gerais</MenuItem>
+              <InfoIcon color="primary" />
+              Características Gerais</MenuItem>
           </Menu>
-          <Button 
-          color="inherit" 
-          onClick={redirectLogin}>
-               <ExitToApp />
+          <Button
+            color="inherit"
+            onClick={redirectLogin}>
+            <ExitToApp />
             Entrar</Button>
         </Toolbar>
       </AppBar>

@@ -5,6 +5,7 @@ import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import { createStyles, makeStyles } from '@material-ui/core/styles';
 import AddIcCallIcon from '@material-ui/icons/AddIcCall';
+import EmailIcon from '@material-ui/icons/Email';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -25,7 +26,7 @@ export default function NavBar() {
         <Container maxWidth="md">
           <Toolbar>
             <Typography variant="h8" className={classes.title}>
-              hotelifba@gmail.com
+              <EmailIcon fontSize="small" /> hotelifba@gmail.com
             </Typography>
             <Typography variant="h8" className={classes.title}>
               <AddIcCallIcon fontSize="small" /> +55 (71) 3321 5688
