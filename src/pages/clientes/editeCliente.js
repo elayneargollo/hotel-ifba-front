@@ -89,7 +89,7 @@ export default function LayoutTextFields() {
     return (
         <div className="conteudoLogin">
             <div className="boxLogin">
-                <h1>Alterar dados cadastrais</h1>
+                <h1>Dados cadastrais</h1>
                 <div className={classes.root}>
 
                     <div>

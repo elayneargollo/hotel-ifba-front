@@ -1,10 +1,10 @@
-import React, { Component, useContext, useState} from "react";
+import React, { useContext, useState} from "react";
 import { Context } from '../../contexts/auth'
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Link from '@material-ui/core/Link';
 import '../login/Sytle.css';
-import { registrarCliente } from '../../routes/paths';
+import { registrarCliente, editarCliente } from '../../routes/paths';
 import { useHistory } from 'react-router-dom';
 
 export default function Login() {
@@ -13,6 +13,11 @@ export default function Login() {
   const [password, setPassword] = useState('');
   const history = useHistory();
   const { authenticated, handleLogin} = useContext(Context);
+
+  if(authenticated)
+  {
+    history.push(editarCliente);
+  }
 
    return (
       <div className="conteudoLogin">

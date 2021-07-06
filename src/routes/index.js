@@ -36,9 +36,9 @@ function Rotas() {
         <CustomRoute exact path={paths.login} component={Login} />
         <CustomRoute exact path={paths.servicos} component={Servicos} />
         <CustomRoute exact path={paths.registrarCliente} component={RegisterCliente} />
+        <CustomRoute exact path={paths.caracteristicas} component={Caracteristicas} />
         <CustomRoute isPrivate exact path={paths.registrarReserva} component={RegisterReserva} />
         <CustomRoute isPrivate exact path={paths.editarCliente} component={EditeCliente} />
-        <CustomRoute exact path={paths.caracteristicas} component={Caracteristicas} />
         <CustomRoute isPrivate exact path={paths.editReserva} component={EditarReserva} />
       </Switch>
     </BrowserRouter>

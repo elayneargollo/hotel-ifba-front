@@ -9,17 +9,11 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import swal from 'sweetalert';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import IconButton from '@material-ui/core/IconButton';
-import DeleteIcon from '@material-ui/icons/Delete';
-import EditIcon from '@material-ui/icons/Edit';
-import { Button } from '@material-ui/core';
 import { getCaracteristicas } from "../../services/api/caracteristicas";
-import PersonIcon from '@material-ui/icons/Person';
 
 export default function User() {
 
   const classes = useStyles();
-  const [isOpen, setIsOpen] = useState(false);
   const [caracteristicas, setCaracteristicas] = useState({});
   const [loading, setLoading] = useState(true);
 

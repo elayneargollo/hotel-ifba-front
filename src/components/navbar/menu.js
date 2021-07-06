@@ -11,9 +11,7 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import Fade from '@material-ui/core/Fade';
 import AppsIcon from '@material-ui/icons/Apps';
-import Home from '@material-ui/icons/Home';
 import ExitToApp from '@material-ui/icons/ExitToApp';
-import {  Redirect } from 'react-router-dom';
 
 
 const useStyles = makeStyles((theme) =>
