@@ -11,3 +11,6 @@ Preencha todas as informações corretamente e será enviado para o e-mail infor
 
 Após o cadastrad será permitido a realização de reserva, altera-lá e alterar também seus dados pessoais.
 
+
+![Alt text](https://github.com/elayneargollo/hotelIfba-front/blob/master/public/static/react.png?raw=true "Home")
+
