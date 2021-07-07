@@ -23,3 +23,15 @@ export const getById = id =>
         return null;
     });
 }
+
+export const updateReserva = reserva =>
+{
+    return axios
+    .put(`reservas/edit/`, reserva)
+    .then(response => {
+        return response;
+    })
+    .catch(error => {
+        return null;
+    });
+}

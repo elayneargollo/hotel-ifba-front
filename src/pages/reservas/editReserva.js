@@ -1,15 +1,11 @@
 import React from 'react';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import { getAllServico } from "../../services/api/servicos";
-import { getQuartosDisponiveis } from "../../services/api/quartos";
-import { addReserva, getById } from "../../services/api/reservas";
+import { getByIdQuarto } from "../../services/api/quartos";
+import { updateReserva, getById } from "../../services/api/reservas";
+import { getByIdServico } from "../../services/api/servicos";
 import { ReservaFieldsValidation } from "./reservaFieldsValidation.js";
 import swal from 'sweetalert';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -25,11 +21,10 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ControlledOpenSelect() {
     const classes = useStyles();
-    const [servicoId, setServico] = React.useState('');
-    const [servicos, setServicoCombo] = useState('');
+    const [servicoDescricao, setServico] = React.useState('');
+    const [servicoId, setServicoId] = useState('');
     const [reserva, setReserva] = useState('');
     const [reservaId, setReservaId] = useState('');
-    const [open, setOpen] = React.useState(false);
     const [data_entrada, setData_entrada] = useState('');
     const [data_saida, setData_saida] = useState('');
     const [quantidade_pessoas, setQuantidade_pessoas] = useState('');
@@ -49,45 +44,45 @@ export default function ControlledOpenSelect() {
         }
     }
 
-    function cleanField() {
-        setNumeroQuarto("");
-        setServico("");
-        setData_entrada("");
-        setData_saida("");
-        setQuantidade_pessoas("");
-        setNumeroQuarto("");
-        setCartao("")
-        setClienteId("")
-    }
-
     async function handleSave() {
 
         if (!validationField(data_entrada, data_saida, quantidade_pessoas, cliente, servicoId, quartoId)) {
-            let reserva = { data_entrada, data_saida, quantidade_pessoas: parseInt(quantidade_pessoas), cliente, servico: parseInt(servicoId), quarto: parseInt(quartoId), cartao }
+        let reserva = {id: reservaId, data_entrada, data_saida, quantidade_pessoas: parseInt(quantidade_pessoas), cliente, servico: parseInt(servicoId), quarto: quartoId, cartao }
 
             async function getResponse() {
 
-                const data = await addReserva(reserva);
+                const data = await updateReserva(reserva);
 
                 if (data != null) {
-                    swal("Reserva cadastrada!", "", "success");
+                    swal("Reserva atualizada!", "", "success");
                 }
                 else
                     swal("Houve um erro", "Verifique as informações e tente novamente", "error");
             }
             getResponse();
-            cleanField()
         }
     }
 
-    const handleChangeQuarto = (event) => {
-        setQuantidade_pessoas(event.target.value);
+    async function getDescricaoServico(id)  {
+
+        async function getServico() {
+            try {
+                const data = await getByIdServico(id);
+                setServico(data.data.tipo);
+                setServicoId(data.data.id)
+            } catch (error) {
+            }
+        }
+        getServico();
+    };
+
+    async function getNumeroQuarto(id)  {
 
         async function getQuartos() {
             try {
-                const data = await getQuartosDisponiveis(event.target.value);
+                const data = await getByIdQuarto(id);
                 setNumeroQuarto(data.data.numero);
-                setQuarto(data.data.id);
+                setQuarto(data.data.id)
             } catch (error) {
             }
         }
@@ -100,34 +95,17 @@ export default function ControlledOpenSelect() {
             try {
                 const data = await getById(reservaId);
                 setReserva(data.data);
-
+                getNumeroQuarto(reserva.quarto)
+                getDescricaoServico(reserva.servico) 
+                setQuantidade_pessoas(reserva.quantidade_pessoas)
+                setCartao(reserva.cartao)
+                setData_entrada(reserva.data_entrada)
+                setData_saida(reserva.data_saida)
+                setClienteId(id)
             } catch (error) {
             }
         }
         getReserva();
-    };
-
-    useEffect(() => {
-        async function getServicos() {
-            try {
-                const data = await getAllServico();
-                setServicoCombo(data.data);
-            } catch (error) {
-            }
-        }
-        getServicos();
-    }, []);
-
-    const handleChange = (event) => {
-        setServico(event.target.value);
-    };
-
-    const handleClose = () => {
-        setOpen(false);
-    };
-
-    const handleOpen = () => {
-        setOpen(true);
     };
 
     return (
@@ -148,6 +126,9 @@ export default function ControlledOpenSelect() {
                         className={classes.textField}
                         value={reservaId}
                         onChange={(e) => setReservaId(e.target.value)}
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
                     />
 
                 </div>
@@ -157,29 +138,58 @@ export default function ControlledOpenSelect() {
 
                 <div className="texto">
                     <TextField
-                        id="margin-none"
+                        id="date"
+                        label="Quantidade de Pessoas *"
+                        type="int"
+                        style={{ margin: 8 }}
+                        defaultValue={quantidade_pessoas}
                         className={classes.textField}
-                        value={reserva.cartao}
-                        onChange={(e) => setCartao(e.target.value)}
+                        value={reserva.quantidade_pessoas}
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
+                        //onChange={handleChangeQuarto}
+  
                     />
                 </div>
                 <div className="texto">
-                    <TextField disabled
+                    <TextField
+                        id="margin-none"
+                        className={classes.textField}
+                        defaultValue={reserva.cartao}
+                        label="Número do cartão *"
+                        value={reserva.cartao}
+                        onChange={(e) => setCartao(e.target.value)}
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
+                    />
+                </div>
+                <div className="texto">
+                    <TextField 
                         id="date"
                         type="int"
+                        label="Número do quarto*"
                         defaultValue="0"
                         className={classes.textField}
-                        value={reserva.quarto}
+                        value={quartoNumber}
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
                     />
                 </div>
                 <div className="texto">
                     <div className="texto">
-                        <TextField disabled
+                        <TextField 
                             id="date"
                             type="int"
                             defaultValue="0"
+                            label="Serviço*"
                             className={classes.textField}
-                            value={reserva.servico}
+                            value={servicoDescricao}
+                            InputLabelProps={{
+                                shrink: true,
+                            }}
                         />
                     </div>
                 </div>
@@ -188,7 +198,8 @@ export default function ControlledOpenSelect() {
                         id="date"
                         type="datetime-local"
                         className={classes.textField}
-                        value={reserva.data_entrada}
+                        //value={data_entrada}
+                        label="Data Entrada*"
                         onChange={(e) => setData_entrada(e.target.value)}
                         InputLabelProps={{
                             shrink: true,
@@ -201,7 +212,8 @@ export default function ControlledOpenSelect() {
                         id="date"
                         type="datetime-local"
                         className={classes.textField}
-                        value={reserva.data_entrada}
+                        //value={reserva.data_saida}
+                        label="Data Saída*"
                         onChange={(e) => setData_saida(e.target.value)}
                         InputLabelProps={{
                             shrink: true,
@@ -209,7 +221,7 @@ export default function ControlledOpenSelect() {
                     />
                 </div>
                 <div className="texto">
-                    <Button size="small" variant="contained" color="primary" onClick={() => handleSave()}>Registrar</Button>
+                    <Button size="small" variant="contained" color="primary" onClick={() => handleSave()}>Alterar</Button>
                 </div>
             </Container>
         </React.Fragment>

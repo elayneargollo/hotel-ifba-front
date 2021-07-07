@@ -11,3 +11,16 @@ export const getAllServico = () =>
         console.log(error)
     });
 }
+
+
+export const getByIdServico = id =>
+{
+    return axios
+    .get(`/servicos/${id}`)
+    .then(response => {
+        return response;
+    })
+    .catch(error => {
+        return null;
+    });
+}

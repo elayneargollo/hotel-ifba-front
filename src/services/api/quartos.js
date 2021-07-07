@@ -11,3 +11,15 @@ export const getQuartosDisponiveis = numerode_pessoas =>
         console.log(error)
     });
 }
+
+export const getByIdQuarto = id =>
+{
+    return axios
+    .get(`/quartos/${id}`)
+    .then(response => {
+        return response;
+    })
+    .catch(error => {
+        return null;
+    });
+}

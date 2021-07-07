@@ -63,7 +63,7 @@ export default function LayoutTextFields() {
             setLoading(false);
 
             if (data != null) {
-                swal("Usuário criado!", "Sua senha será enviada por email", "success");
+                swal("Usuário editado com sucesso!");
                 history.push(login);
             }
 
