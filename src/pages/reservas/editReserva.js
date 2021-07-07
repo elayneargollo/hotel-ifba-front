@@ -100,7 +100,7 @@ export default function ControlledOpenSelect() {
             try {
                 const data = await getById(reservaId);
                 setReserva(data.data);
-                console.log(reserva.cartao)
+
             } catch (error) {
             }
         }

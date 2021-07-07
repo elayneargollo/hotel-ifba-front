@@ -4,10 +4,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import { addCliente } from "../../services/api/clientes";
 import { login } from '../../routes/paths';
 import swal from 'sweetalert';
-import { getById, edit } from "../../services/api/clientes";
+import { getById, editCliente } from "../../services/api/clientes";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -29,9 +28,9 @@ const useStyles = makeStyles((theme) => ({
 export default function LayoutTextFields() {
     const classes = useStyles();
     const [cliente, setCliente] = useState();
-    const [telefone, setTelefone] = useState();
-    const [email, setEmail] = useState();
-    const [endereco, setEndereco] = useState();
+    let [telefone, setTelefone] = useState();
+    let [email, setEmail] = useState();
+    let [endereco, setEndereco] = useState();
     const [loading, setLoading] = useState(true);
     const history = useHistory();
     const id = localStorage.getItem('id');
@@ -52,17 +51,15 @@ export default function LayoutTextFields() {
     },[]);
 
     async function handleEdit() {
-        //let data_nascimento= cliente.data_nascimento
-        let nacionalidade= cliente.nacionalidade
-        let nome= cliente.nome
-        let numero_identificacao= cliente.numero_identificacao
-        let data_expedicao= cliente.data_expedicao
+        if(typeof email === "undefined") email = cliente.email 
+        if(typeof endereco === "undefined") endereco = cliente.endereco
+        if(typeof telefone === "undefined") telefone = cliente.telefone
 
-        let clientePut = { id , data_nascimento: cliente.data_nascimento, email, endereco, nacionalidade, nome, telefone, numero_identificacao, data_expedicao};
+        let clienteEdit = {id, data_nascimento: cliente.data_nascimento, email, endereco, nacionalidade: cliente.nacionalidade, nome: cliente.nome, telefone, numero_identificacao: cliente.numero_identificacao, data_expedicao: cliente.data_expedicao};
 
         async function getResponse() {
 
-            const data = await edit(clientePut);
+            const data = await editCliente(clienteEdit);
             setLoading(false);
 
             if (data != null) {
@@ -107,6 +104,7 @@ export default function LayoutTextFields() {
                         />
                         <TextField
                             label="Telefone/Celular *"
+                            type="int"
                             id="margin-none"
                             defaultValue={cliente.telefone}
                             className={classes.textField}

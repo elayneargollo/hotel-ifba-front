@@ -39,10 +39,10 @@ export const getById = id =>
 }
 
 
-export const edit = cliente =>
+export const editCliente = cliente =>
 {
     return axios
-    .put(`/clientes/`, cliente)
+    .put(`clientes/edit/`, cliente)
     .then(response => {
         return response;
     })
